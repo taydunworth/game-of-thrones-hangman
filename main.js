@@ -12,7 +12,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(
   expressSession({
-    secret: 'hangman',
+    secret: 'winter is coming',
     resave: false,
     saveUninitialized: true
   })
@@ -25,9 +25,9 @@ app.set('view engine', 'mustache')
 app.get('/', function(req, res, next) {
   if (!req.session.splitWord) {
     const wordIndex = Math.floor(Math.random() * allWords.length)
-    console.log('INDEX: ' + wordIndex)
-    const wordToGuess = allWords[wordIndex]
-    console.log('WORD: ' + wordToGuess)
+    let wordToGuess = allWords[wordIndex]
+    wordToGuess = wordToGuess.toUpperCase()
+    console.log(wordToGuess)
     // split the array
     req.session.splitWord = wordToGuess.split('')
 
@@ -47,6 +47,7 @@ app.get('/', function(req, res, next) {
 })
 
 app.get('/win', function(req, res) {
+  req.session.splitWord = undefined
   res.render('win')
 })
 
@@ -56,6 +57,7 @@ app.get('/lose', function(req, res) {
 })
 
 app.post('/add', function(req, res) {
+  req.body.letterGuessed = req.body.letterGuessed.toUpperCase()
   if (req.session.splitWord.includes(req.body.letterGuessed)) {
     req.session.splitWord.forEach(function(letter, index) {
       // if that letter is the letter the user guessed
