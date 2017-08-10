@@ -2,12 +2,10 @@ const express = require('express')
 const path = require('path')
 const mustacheExpress = require('mustache-express')
 const bodyParser = require('body-parser')
-const fs = require('fs')
 const expressSession = require('express-session')
-
+const words = require('words.js')
 const app = express()
-
-const words = fs.readFileSync('/usr/share/dict/words', 'utf-8').toLowerCase().split('\n')
+const allWords = words.words
 
 app.use(express.static('public'))
 app.use(bodyParser.json())
@@ -19,7 +17,6 @@ app.use(
     saveUninitialized: true
   })
 )
-
 app.engine('mustache', mustacheExpress())
 
 app.set('views', './views')
@@ -27,12 +24,21 @@ app.set('view engine', 'mustache')
 
 app.get('/', function(req, res, next) {
   if (!req.session.splitWord) {
-    const wordToGuess = words[Math.floor(Math.random() * words.length)]
+    const wordIndex = Math.floor(Math.random() * allWords.length)
+    console.log('INDEX: ' + wordIndex)
+    const wordToGuess = allWords[wordIndex]
+    console.log('WORD: ' + wordToGuess)
     // split the array
     req.session.splitWord = wordToGuess.split('')
-    req.session.placeholder = req.session.splitWord.map(x => {
-      return '_'
+
+    req.session.placeholder = req.session.splitWord.map(v => {
+      if (v === ' ') {
+        return ' '
+      } else {
+        return '_'
+      }
     })
+
     req.session.guess = []
     req.session.count = 8
   }
