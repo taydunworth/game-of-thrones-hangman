@@ -1,43 +1,58 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,700');
+
 body {
-  font-family: 'Raleway', Arial, Helvetica, sans-serif;
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
+  background-color: #030f21;
+  color: #fff;
+  font-weight: 300;
+}
+
+h1 {
+  text-transform: uppercase;
+  font-size: 4em;
+  margin-bottom: 0;
+}
+
+h2 strong {
+  display: block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 300;
 }
 
 .wrapper {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 100%;
+  padding: 50px;
 }
 
 .game-container {
   display: flex;
   flex-direction: column;
-  width: 90%;
-  align-items: center;
+  width: 50%;
   justify-content: center;
-  height: 60%;
-  position: absolute;
-  margin: auto;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
 }
 
 ul {
   list-style-type: none;
   display: flex;
   padding: 0;
-  width: 40%;
-  justify-content: space-between;
 }
 
 li {
   font-size: 2em;
+  padding-right: 20px;
 }
 
 .guess {
-  border-bottom: 4px solid #000;
   padding-bottom: 8px;
 }
 
@@ -45,6 +60,52 @@ li {
   font-size: 1.5em;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Abril Fatface', sans-serif;
+.image-box {
+  width: 40%;
+}
+
+.hodor-mode-btn {
+  margin: 25px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  padding: 10px;
+  text-transform: uppercase;
+  background-color: #d4d6d8;
+  border: none;
+  font-size: 1.1em;
+  cursor: pointer;
+  width: 200px;
+  overflow: hidden;
+}
+
+.hodor-mode-btn:focus {
+  outline: 0;
+}
+
+.hodor-mode-btn:hover {
+  background-color: #9bb4cc;
+  -webkit-transition: background-color .2s ease-in-out;
+  -moz-transition: background-color .2s ease-in-out;
+  -o-transition: background-color .2s ease-in-out;
+  transition: background-color .2s ease-in-out;
+}
+
+.hodor-mode-btn:hover:before {
+  content: "Hold the Door";
+  animation: btn-slide-in .3s ease-in-out;
+}
+
+.hodor-mode-btn:hover span {
+  display: none;
+}
+
+@keyframes btn-slide-in {
+  0% {
+    position: relative;
+    top: -30px;
+  }
+  100% {
+    top: 0px;
+  }
 }

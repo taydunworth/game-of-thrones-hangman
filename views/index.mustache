@@ -2,28 +2,33 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Guess The Word</title>
+    <title>Hodor Hangman</title>
     <link rel="stylesheet" href="/styles.css">
   </head>
   <body>
     <div class="wrapper">
       <div class="game-container">
-        <h1>Guess The Word</h1>
-        <span>When you play the game of thrones, you win or you die.</span>
+        <button type="button" name="button" class="hodor-mode-btn"><span>Hodor Mode</span></button>
+        <h1>Hodor Hangman</h1>
+        <h2 class="subtext">When you play the game of thrones, <strong>you win or you die.</strong></h2>
           <ul>
             {{#placeholder}}
               <li>{{.}}</li>
             {{/placeholder}}
           </ul>
-        <h2>Guess a Letter</h2>
+        <h2 class="guess-a-letter">Guess a Letter</h2>
         <form action="/add" method="post" class="add-item">
           <input type="text" name="letterGuessed" value="" maxlength="1">
-          <button type="submit" name="button" class="submit-btn">Guess</button>
+          <button type="submit" name="button" class="submit-btn">Hodor</button>
         </form>
-        <p><strong>Attempts Left:</strong> {{count}}</p>
+        <p class="attempts"><strong>Attempts Left:</strong> {{count}}</p>
         <h2 class="guess">Letters Guessed</h2>
           <p class="guessed-letters">{{#guess}}{{letter}} {{/guess}}</p>
       </div>
+      <div class="image-box">
+        <img src="http://via.placeholder.com/300x500">
+      </div>
     </div>
+    <script src="main.js"></script>
   </body>
 </html>
