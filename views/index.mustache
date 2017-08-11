@@ -11,6 +11,17 @@
         <button type="button" name="button" class="hodor-mode-btn"><span>Hodor Mode</span></button>
         <h1>Hodor Hangman</h1>
         <h2 class="subtext">When you play the game of thrones, <strong>you win or you die.</strong></h2>
+        {{#win}}<h3>What do we say to the Lord of Death?</h3>
+        <h2>"Not today."</h2>
+        <form action="/reset" method="post">
+          <button type="submit" name="button">Play Again</button>
+        </form>
+        {{/win}}
+        {{#lose}}<h2>And now his watch has ended.</h2>
+        <form action="/reset" method="post">
+          <button type="submit" name="button">Play Again</button>
+        </form>
+        {{/lose}}
           <ul>
             {{#placeholder}}
               <li>{{.}}</li>

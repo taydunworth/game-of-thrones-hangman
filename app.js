@@ -42,18 +42,14 @@ app.get('/', function(req, res, next) {
     req.session.guess = []
     req.session.count = 8
   }
-  const _data = { guess: req.session.guess, placeholder: req.session.placeholder, count: req.session.count }
+  const _data = {
+    guess: req.session.guess,
+    placeholder: req.session.placeholder,
+    count: req.session.count,
+    win: req.session.win,
+    lose: req.session.lose
+  }
   res.render('index', _data)
-})
-
-app.get('/win', function(req, res) {
-  req.session.splitWord = undefined
-  res.render('win')
-})
-
-app.get('/lose', function(req, res) {
-  req.session.splitWord = undefined
-  res.render('lose')
 })
 
 app.post('/add', function(req, res) {
@@ -69,15 +65,20 @@ app.post('/add', function(req, res) {
   } else {
     req.session.count -= 1
     if (req.session.placeholder.join(',') != req.session.splitWord.join(',') && req.session.count <= 0) {
-      res.redirect('/lose')
+      req.session.lose = true
     }
   }
 
   req.session.guess.push({ letter: req.body.letterGuessed })
 
   if (req.session.placeholder.join(',') === req.session.splitWord.join(',') && req.session.count >= 0) {
-    res.redirect('/win')
+    req.session.win = true
   }
+  res.redirect('/')
+})
+
+app.post('/reset', function(req, res) {
+  req.session.splitWord = undefined
   res.redirect('/')
 })
 
