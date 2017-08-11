@@ -28,6 +28,7 @@ app.get('/', function(req, res, next) {
     let wordToGuess = allWords[wordIndex]
     wordToGuess = wordToGuess.toUpperCase()
     console.log(wordToGuess)
+    req.session.game = true
     // split the array
     req.session.splitWord = wordToGuess.split('')
 
@@ -47,7 +48,8 @@ app.get('/', function(req, res, next) {
     placeholder: req.session.placeholder,
     count: req.session.count,
     win: req.session.win,
-    lose: req.session.lose
+    lose: req.session.lose,
+    game: req.session.game
   }
   res.render('index', _data)
 })
@@ -66,6 +68,7 @@ app.post('/add', function(req, res) {
     req.session.count -= 1
     if (req.session.placeholder.join(',') != req.session.splitWord.join(',') && req.session.count <= 0) {
       req.session.lose = true
+      req.session.game = false
     }
   }
 
@@ -73,12 +76,16 @@ app.post('/add', function(req, res) {
 
   if (req.session.placeholder.join(',') === req.session.splitWord.join(',') && req.session.count >= 0) {
     req.session.win = true
+    req.session.game = false
   }
   res.redirect('/')
 })
 
 app.post('/reset', function(req, res) {
   req.session.splitWord = undefined
+  req.session.win = false
+  req.session.game = true
+  req.session.lose = false
   res.redirect('/')
 })
 

@@ -39,6 +39,7 @@ h6 {
   flex-direction: column;
   width: 50%;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 ul {
@@ -98,6 +99,40 @@ li {
 
 .hodor-mode-btn:hover span {
   display: none;
+}
+
+form {
+  display: flex;
+  align-items: center;
+}
+
+input {
+  font-size: 1em;
+  border: none;
+  padding: 10px;
+  margin-right: 10px;
+}
+
+input:focus {
+  outline: none;
+}
+
+button {
+  font-size: 1em;
+  padding: 10px;
+  border: none;
+  text-transform: uppercase;
+  background-color: #c5d8ec;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #9bb4cc;
+  -webkit-transition: background-color .2s ease-in-out;
+  -moz-transition: background-color .2s ease-in-out;
+  -o-transition: background-color .2s ease-in-out;
+  transition: background-color .2s ease-in-out;
 }
 
 @keyframes btn-slide-in {
