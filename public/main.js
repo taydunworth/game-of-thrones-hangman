@@ -5,15 +5,15 @@ const attempts = document.querySelector('.attempts')
 const lettersGuessed = document.querySelector('.guess')
 
 hodorModeBtn.addEventListener('click', function() {
-  if (subtext.textContent === 'Hodor') {
+  if (subtext.textContent === 'HODOR') {
     subtext.textContent = 'When you play the game of thrones, you win or you die.'
     guessALetter.textContent = 'Guess a Letter'
     attempts.textContent = 'Attempts Left:'
     lettersGuessed.textContent = 'Letters Guessed'
   } else {
-    subtext.textContent = 'Hodor'
-    guessALetter.textContent = 'Hodor'
-    attempts.textContent = 'Hodor:'
-    lettersGuessed.textContent = 'Hodor'
+    subtext.textContent = 'HODOR'
+    guessALetter.textContent = 'HODOR'
+    attempts.textContent = 'HODOR:'
+    lettersGuessed.textContent = 'HODOR'
   }
 })

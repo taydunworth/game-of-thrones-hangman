@@ -49,7 +49,8 @@ app.get('/', function(req, res, next) {
     count: req.session.count,
     win: req.session.win,
     lose: req.session.lose,
-    game: req.session.game
+    game: req.session.game,
+    message: req.session.message
   }
   res.render('index', _data)
 })
@@ -58,8 +59,12 @@ app.post('/add', function(req, res) {
   req.body.letterGuessed = req.body.letterGuessed.toUpperCase()
   if (req.session.splitWord.includes(req.body.letterGuessed)) {
     req.session.splitWord.forEach(function(letter, index) {
-      // if that letter is the letter the user guessed
-      if (letter === req.body.letterGuessed) {
+      // if that letter has already been guessed
+      if (req.session.guess.includes(req.body.letterGuessed)) {
+        req.session.message = 'You have already chosen that letter.'
+        res.redirect('/')
+        // if that letter is the letter the user guessed
+      } else if (letter === req.body.letterGuessed) {
         // Replace that *INDEX* within the placeholder with the letter
         req.session.placeholder[index] = letter
       }
@@ -90,5 +95,5 @@ app.post('/reset', function(req, res) {
 })
 
 app.listen(3000, function() {
-  console.log('Successfully started express application!')
+  console.log('Dracarys')
 })

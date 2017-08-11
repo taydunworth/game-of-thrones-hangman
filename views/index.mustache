@@ -9,7 +9,7 @@
     <div class="wrapper">
       <div class="game-container">
         <button type="button" name="button" class="hodor-mode-btn"><span>Hodor Mode</span></button>
-        <h1>Hodor Hangman</h1>
+        <h1>Hodor <span>Hangman</span></h1>
         {{#game}}<h2 class="subtext">When you play the game of thrones, you win or you die.</h2>{{/game}}
         {{#win}}<h3>What do we say to the Lord of Death?</h3>
         <h2>"Not today."</h2>
@@ -32,13 +32,14 @@
           <input type="text" name="letterGuessed" value="" maxlength="1">
           <button type="submit" name="button" class="submit-btn">Hodor</button>
         </form>
+        {{#message}}{{.}}{{/message}}
         <p class="attempts"><strong>Attempts Left:</strong> {{count}}</p>
         <h2 class="guess">Letters Guessed</h2>
           <p class="guessed-letters">{{#guess}}{{letter}} {{/guess}}</p>
       </div>
 
       <div class="image-box">
-        <img src="http://via.placeholder.com/300x500">
+        <img src="Jon-Snow.png">
       </div>
       {{/game}}
     </div>

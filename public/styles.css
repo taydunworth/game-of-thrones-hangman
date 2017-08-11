@@ -2,19 +2,23 @@
 
 body {
   font-family: 'Poppins', Arial, Helvetica, sans-serif;
-  background-color: #030f21;
+  background-color: #0a1628;
   color: #fff;
-  font-weight: 300;
 }
 
 h1 {
   text-transform: uppercase;
   font-size: 4em;
   margin-bottom: 0;
+  font-weight: 700;
 }
 
 h2 strong {
   display: block;
+}
+
+h1 span {
+  font-weight: 700;
 }
 
 h1,
